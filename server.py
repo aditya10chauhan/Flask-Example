@@ -1,5 +1,5 @@
 from flask import Flask
-from controllers import homeController, moviesController, movieController
+from controllers import homeController, moviesController, movieController, addMovieController, editMovieController
 from database import Database
 from models.movie import Movie
 
@@ -8,8 +8,10 @@ def create_app():
     app.config.from_object("settings")
 
     app.add_url_rule("/", view_func=homeController.home_page)
-    app.add_url_rule("/movies", view_func=moviesController.movies_page)
+    app.add_url_rule("/movies", view_func=moviesController.movies_page, methods=["GET", "POST"])
     app.add_url_rule("/movies/<int:movie_key>", view_func=movieController.detail_page)
+    app.add_url_rule("/new-movie", view_func=addMovieController.movie_add_page, methods=["GET", "POST"])
+    app.add_url_rule("/movies/<int:movie_key>/edit", view_func=editMovieController.movie_edit_page, methods=["GET", "POST"])
 
     createMockUpDB(app=app)
 

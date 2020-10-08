@@ -27,3 +27,6 @@ class Database:
             movie_ = Movie(movie.title, year=movie.year)
             movies.append((movie_key, movie_))
         return movies
+
+    def update_movie(self, movie_key, movie):
+        self.movies[movie_key] = movie
