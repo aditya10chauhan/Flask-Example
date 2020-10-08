@@ -1,4 +1,4 @@
-from movie import Movie
+from models.movie import Movie
 
 class Database:
     def __init__(self):

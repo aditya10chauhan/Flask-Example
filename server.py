@@ -1,15 +1,15 @@
 from flask import Flask
-from alala import home, movies, movie
+from controllers import homeController, moviesController, movieController
 from database import Database
-from movie import Movie
+from models.movie import Movie
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object("settings")
 
-    app.add_url_rule("/", view_func=home.home_page)
-    app.add_url_rule("/movies", view_func=movies.movies_page)
-    app.add_url_rule("/movies/<int:movie_key>", view_func=movie.detail_page)
+    app.add_url_rule("/", view_func=homeController.home_page)
+    app.add_url_rule("/movies", view_func=moviesController.movies_page)
+    app.add_url_rule("/movies/<int:movie_key>", view_func=movieController.detail_page)
 
     createMockUpDB(app=app)
 
